@@ -53,7 +53,7 @@ setup_vim_pathogen() {
             apt_get_install "curl";
        fi
        info "curling file ($VIM_PATHOGEN_URL)... \n"
-       curl -LSso $VIM_PATHOGEN_PATH $VIM_PATHOGEN_URL &>> $LOGDIR/curl.log;
+       curl -LSso $VIM_PATHOGEN_PATH $VIM_PATHOGEN_URL >> $LOGDIR/curl.log;
     else
         info "vim pathogen already installed.\n"
     fi
