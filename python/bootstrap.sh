@@ -17,10 +17,10 @@ else
        install=false;;
      *)
        ;;
-    esac 
+    esac
 fi
 
-if [[ $install == true ]]; then 
+if [[ $install == true ]]; then
     install "python27"
 fi
 
@@ -34,11 +34,23 @@ install "virtualenv" "python-virtualenv"
 if hash mkvirtualenv 2> /dev/null; then
     info "virtualenvwrapper is already installed"
 else
-    sudo pip install virtualenvwrapper >> $LOGDIR/pip.log;
-    if [ $? != 0 ]; then
-        fail "installing virtualenvwrapper failed. \n"
+    user "Install virtualenvwrapper? [Y/n]"
+    read -n 1 action
+    case "$action" in
+      Y)
+        vwrapinstall=true;;
+      n)
+        vwrapinstall=false;;
+      *)
+        ;;
+    esac
+    if [[ $vwrapinstall == true ]]; then
+      sudo pip install virtualenvwrapper >> $LOGDIR/pip.log;
+      if [ $? != 0 ]; then
+          fail "installing virtualenvwrapper failed. \n"
+      fi
+      make_dir "$HOME/.virtualenvs"
     fi
-    make_dir "$HOME/.virtualenvs"
 fi
 
 success "configured python successfully"
