@@ -19,6 +19,10 @@ set hls
 set foldmethod=indent
 set clipboard=unnamed
 
+" convenient window splitting
+nmap <leader>v :vsplit<CR>
+nmap <leader>i :split<CR>
+
 " tell vim to keep a backup file
 set backup
 " tell vim where to put its backup files
