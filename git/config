@@ -1,10 +1,7 @@
-[alias]
-lg1 = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
-lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
-lg = !"git lg1"
-
 [color]
-  ui = auto
+  branch = auto
+  interactive = auto
+  ui = true
 [color "branch"]
   current = yellow reverse
   local = yellow
@@ -14,8 +11,44 @@ lg = !"git lg1"
   frag = magenta bold
   old = red bold
   new = green bold
-
 [color "status"]
   added = yellow
   changed = green
   untracked = cyan
+
+[core]
+	editor = mvim -f
+
+[alias]
+  lg1 = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+  lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+  lg = !"git lg1"
+  co = checkout
+  st = status
+  di = diff
+  ci = commit
+  br = branch
+  l = log --oneline --decorate --graph
+  d = difftool
+  fixup = commit --amend -C HEAD
+  timeline = log --graph --branches --pretty=oneline --decorate
+  untracked-files = ls-files -o --exclude-standard
+  ignored-files = ls-files --others -i --exclude-standard
+  modified-files = ls-files -m
+
+[diff]
+  tool = default-difftool
+  prompt = true
+[difftool "default-difftool"]
+  cmd = /Applications/p4merge.app/Contents/MacOS/p4merge "$LOCAL" "$REMOTE"
+  prompt = true
+[merge]
+  tool = p4merge
+[mergetool "p4merge"]
+  cmd = /Applications/p4merge.app/Contents/MacOS/p4merge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
+  keepTemporaries = false
+  trustExitCode = false
+  keepBackup = false
+[push]
+  default = simple
+
