@@ -2,9 +2,22 @@ set nocompatible  " We don't want vi compatibility.
 
 set ruler  " line and column numbers
 set number " line numbers (on the left)
+" rnu for relative line numbers
+set rnu
 
 " install pathogen
 call pathogen#infect()
+call pathogen#helptags()
+
+" other basic config settings
+syntax on
+set laststatus=2
+set colorcolumn=120
+set textwidth=80
+set lines=60 columns=100
+set hls
+set foldmethod=indent
+set clipboard=unnamed
 
 " tell vim to keep a backup file
 set backup
@@ -25,7 +38,7 @@ match ErrorMsg '\s\+$'
 let g:ack_default_options = " -H --nocolor --nogroup --column"
 
 "colorscheme
-set background=dark
+set background=light
 let g:solarized_termcolors=128
 let g:solarized_termtrans=1
 colorscheme solarized
