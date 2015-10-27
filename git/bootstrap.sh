@@ -17,8 +17,8 @@ configure_git_name() {
   info "trying to configure git name & email...\n"
 
   if hash git 2>/dev/null; then
-      git config --global user.email "michael@mvanveen.net"
-      git config --global user.name "Michael Van Veen"
+      git config --global user.email "bodhi@getaround.com"
+      git config --global user.name "Bodhi Sansom"
   else
       fail "git is not installed!\n"
   fi
